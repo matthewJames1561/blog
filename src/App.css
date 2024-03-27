@@ -1,38 +1,240 @@
-.App {
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+* {
+  margin: 0;
+  font-family: 'Raleway', sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+:root {
+  /* CSS HEX */
+  --slate-gray: #7a8b99ff;
+  --fire-engine-red: #db162fff;
+  --baby-powder: #fcfffdff;
+  --dark-purple: #120929ff;
+  --dodger-blue: #1098f7ff;
+
+
+  /* CSS Gradient */
+  --gradient-top: linear-gradient(0deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-right: linear-gradient(90deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-bottom: linear-gradient(180deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-left: linear-gradient(270deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-top-right: linear-gradient(45deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-bottom-right: linear-gradient(135deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-top-left: linear-gradient(225deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-bottom-left: linear-gradient(315deg, #7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+  --gradient-radial: radial-gradient(#7a8b99ff, #fcfffdff, #120929ff, #1098f7ff);
+
+  --circuit-tail-size: 4px;
+  --circuit-head-size: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+main {
+  background-color: var(--dark-purple);
   color: white;
+  padding: 20px;
+  min-height: calc(100vh - 90px);
+  box-sizing: border-box;
 }
 
-.App-link {
-  color: #61dafb;
+a {
+  text-decoration: none;
+  font-size: x-large;
+  color: var(--dodger-blue)
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.card {
+  background-color: var(--dark-purple);
+  max-width: 400px;
+  filter: brightness(2);
+  margin: 10px;
+  border-radius: 10px;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.circuitTail {
+width: var(--circuit-tail-size);
+height: var(--circuit-tail-size);
+border-radius: var(--circuit-tail-size);
+background-color: var(--slate-gray);
+
+position: absolute;
+z-index: -2;
+}
+
+.circuitHead {
+    width: var(--circuit-head-size);
+    height: var(--circuit-head-size);
+    border-radius: var(--circuit-head-size);
+    background-color: var(--dodger-blue);
+
+    position: absolute;
+    z-index: -1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Crazy button stuff */
+.button {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: var(--baby-powder);
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.button:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--dodger-blue);
+  border-radius: 10rem;
+  z-index: -2;
+}
+
+.button:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background-color: var(--dodger-blue);
+  filter: brightness(0.9);
+  transition: all 0.3s;
+  border-radius: 10rem;
+  z-index: -1;
+}
+
+.button:hover {
+  color: var(--baby-powder);
+}
+
+.button:hover:before {
+  width: 100%;
+}
+
+.bubbly-button {
+  display: inline-block;
+  text-decoration: none;
+  border: none;
+  padding: 0.75rem 1.25rem;
+  border-radius: 10rem;
+  color: var(--baby-powder);
+  text-transform: uppercase;
+  font-size: 1rem;
+  letter-spacing: 0.15rem;
+
+  position: relative;
+
+  z-index: 1;
+  background-color: var(--dodger-blue);
+
+}
+
+.bubbly-button:before,
+.bubbly-button:after {
+  position: absolute;
+  content: "";
+  display: block;
+  width: 140%;
+  height: 100%;
+  left: -20%;
+  z-index: -1000;
+  transition: all ease-in-out 0.5s;
+  background-repeat: no-repeat;
+}
+
+.bubbly-button:before {
+  display: none;
+  top: -75%;
+  background-image: radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, transparent 20%, var(--dodger-blue) 20%, transparent 30%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, transparent 10%, var(--dodger-blue) 15%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%);
+  background-size: 10% 10%, 20% 20%, 15% 15%, 20% 20%, 18% 18%, 10% 10%, 15% 15%, 10% 10%, 18% 18%;
+}
+
+.bubbly-button:after {
+  display: none;
+  bottom: -75%;
+  background-image: radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, transparent 10%, var(--dodger-blue) 15%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%), radial-gradient(circle, var(--dodger-blue) 20%, transparent 20%);
+  background-size: 15% 15%, 20% 20%, 18% 18%, 20% 20%, 15% 15%, 10% 10%, 20% 20%;
+}
+
+.bubbly-button:active {
+  transform: scale(0.9);
+  background-color: var(--dodger-blue);
+  box-shadow: 0 2px 25px rgba(255, 0, 130, 0.2);
+}
+
+.bubbly-button.animate:before {
+  display: block;
+  transition: none;
+  animation: topBubbles ease-in-out 0.75s forwards;
+}
+
+.bubbly-button.animate:after {
+  display: block;
+  transition: none;
+  animation: bottomBubbles ease-in-out 0.75s forwards;
+}
+
+@keyframes topBubbles {
+  0% {
+    background-position: 5% 90%, 10% 90%, 10% 90%, 15% 90%, 25% 90%, 25% 90%, 40% 90%, 55% 90%, 70% 90%;
   }
-  to {
-    transform: rotate(360deg);
+
+  50% {
+    background-position: 0% 80%, 0% 20%, 10% 40%, 20% 0%, 30% 30%, 22% 50%, 50% 50%, 65% 20%, 90% 30%;
+  }
+
+  100% {
+    background-position: 0% 70%, 0% 10%, 10% 30%, 20% -10%, 30% 20%, 22% 40%, 50% 40%, 65% 10%, 90% 20%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
   }
 }
+
+@keyframes bottomBubbles {
+  0% {
+    background-position: 10% -10%, 30% 10%, 55% -10%, 70% -10%, 85% -10%, 70% -10%, 70% 0%;
+  }
+
+  50% {
+    background-position: 0% 80%, 20% 80%, 45% 60%, 60% 100%, 75% 70%, 95% 60%, 105% 0%;
+  }
+
+  100% {
+    background-position: 0% 90%, 20% 90%, 45% 70%, 60% 110%, 75% 80%, 95% 70%, 110% 10%;
+    background-size: 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%, 0% 0%;
+  }
+}
+
