@@ -3,13 +3,14 @@ import { css } from '@emotion/react';
 
 import { Outlet, Link } from "react-router-dom";
 import StyledButton from '../components/atoms/StyledButton';
+import CircuitBackground from '../components/CircuitBackground';
+import { useEffect } from 'react';
 const navCss = css`
   background-color: var(--dark-purple);
   filter: brightness(0.7);
-  height: 10vh;
+  height: 69px;
   display: flex;
   align-items: center;
-  padding: 0 2rem;
   z-index: 1;
   position: relative;
 `
@@ -58,11 +59,16 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
-      <footer style={{display: 'flex', padding: '20px', flexDirection: 'column',  backgroundColor: 'var(--dark-purple)', filter: 'brightness(0.7)' }}>
-  
+      <footer style={{ display: 'flex', padding: '20px', flexDirection: 'column', backgroundColor: 'var(--dark-purple)', filter: 'brightness(0.7)' }}>
+
         <a css={spacingCss} href='https://portfolio-73964.web.app/'>My First Portfolio Website</a>
         <div css={spacingCss}>
-          <StyledButton>Contact Me</StyledButton>
+          <StyledButton onClick={() => {
+              var email = 'matthewj1561@gmail.com';
+              var subject = 'Blog Contact - {Your Name}';
+
+              document.location = "mailto:"+email+"?subject="+subject
+          }}>Contact Me</StyledButton>
         </div>
       </footer>
     </>

@@ -1,19 +1,21 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
-export default function StyledButton({onClick, children}) {
-    const [showBubbles, setShowBubbles] = useState()
-    function animateButton(e) {
+export default function StyledButton({ onClick, children }) {
+  const [showBubbles, setShowBubbles] = useState()
+  function animateButton() {
+    setShowBubbles(true)
+    setTimeout(function () {
+      setShowBubbles(false)
+    }, 700);
+  };
 
-        e.preventDefault();
+  const handleClick = useCallback((e) => {
+    e.preventDefault();
+    animateButton()
+    onClick()
+  }, [onClick])
 
-        setShowBubbles(true)
-        setTimeout(function(){
-    
-          setShowBubbles(false)
-        },700);
-    };
-      
 
-    return <button className={showBubbles ? 'bubbly-button animate': 'button'} onClick={animateButton}>{children}</button>
-    
+  return <button className={showBubbles ? 'bubbly-button animate' : 'button'} onClick={handleClick}>{children}</button>
+
 }

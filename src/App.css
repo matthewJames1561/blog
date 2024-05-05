@@ -1,7 +1,59 @@
 @import url('https://fonts.googleapis.com/css2?family=Pixelify+Sans&family=Roboto:wght@400;500&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
 
-* {
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* END RESET CSS */
+
+
+
+
+
+
+html {
   margin: 0;
   font-family: 'Raleway', sans-serif;
 }
@@ -28,14 +80,18 @@
 
   --circuit-tail-size: 4px;
   --circuit-head-size: 8px;
+  --main-height: calc(100vh - 215px);
 }
 
 main {
   background-color: var(--dark-purple);
   color: white;
   padding: 20px;
-  min-height: calc(100vh - 90px);
   box-sizing: border-box;
+  min-height: var(--main-height)
+}
+body {
+  background-color: var(--dark-purple);
 }
 
 a {
@@ -45,8 +101,12 @@ a {
 }
 
 .card {
+  font-size: medium;
+  opacity: 0.8;
+  color: white;
+  display: block;
   background-color: var(--dark-purple);
-  max-width: 400px;
+  min-width: 280px;
   filter: brightness(2);
   margin: 10px;
   border-radius: 10px;
@@ -54,42 +114,31 @@ a {
   box-sizing: border-box;
 }
 
-.circuitTail {
-width: var(--circuit-tail-size);
-height: var(--circuit-tail-size);
-border-radius: var(--circuit-tail-size);
-background-color: var(--slate-gray);
-
-position: absolute;
-z-index: -2;
+.card:hover {
+  opacity: 1;
 }
 
-.circuitHead {
-    width: var(--circuit-head-size);
-    height: var(--circuit-head-size);
-    border-radius: var(--circuit-head-size);
-    background-color: var(--dodger-blue);
-
-    position: absolute;
-    z-index: -1;
+.card-image{
+  background-size: cover;
 }
 
+.padding-10 {
+  padding: 10px;
+}
 
+.margin-10 {
+  margin: 10px;
+}
 
+h1 {
+  font-size: xx-large;
+  font-weight:900;
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+h2 {
+  font-size: x-large;
+  font-weight:900;
+}
 
 
 
