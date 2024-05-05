@@ -6,7 +6,7 @@ import { useCallback, useEffect, useState } from 'react';
 
 // TODO: Replace the following with your app's Firebase project configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyCFYwJhKYIDJEbJo2b1F6WMZuBs2BVmvNo",
+    apiKey: process.env.REACT_APP_API_KEY,
     authDomain: "blog-b4a6c.firebaseapp.com",
     projectId: "blog-b4a6c",
     storageBucket: "blog-b4a6c.appspot.com",
