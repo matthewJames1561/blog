@@ -143,6 +143,7 @@ h2 {
 
 .picture-row {
   display: flex;
+  flex-wrap: wrap;
 }
 
 
