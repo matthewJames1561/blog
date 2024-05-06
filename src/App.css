@@ -107,6 +107,7 @@ a {
   display: block;
   background-color: var(--dark-purple);
   min-width: 280px;
+  max-width: 350px;
   filter: brightness(2);
   margin: 10px;
   border-radius: 10px;
@@ -138,6 +139,10 @@ h1 {
 h2 {
   font-size: x-large;
   font-weight:900;
+}
+
+.picture-row {
+  display: flex;
 }
 
 
