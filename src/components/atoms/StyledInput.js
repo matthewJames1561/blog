@@ -17,7 +17,7 @@ const syledButtonCss = css`
     }
 `
 
-export default function StyledInput({ initialValue = null, label, name, onChange = () => {}, fullWidth = false }) {
+export default function StyledInput({ initialValue = null, label, name, onChange = () => {}, fullWidth = false, placeholder, type, required = false}) {
     const [value, setValue] = useState(initialValue)
 
     
@@ -25,8 +25,11 @@ export default function StyledInput({ initialValue = null, label, name, onChange
         {label && <label for={name} style={fullWidth && {width: '100px'}} >{label}</label>}
         <input 
             css={syledButtonCss} 
+            placeholder={placeholder}
             data-full-width={fullWidth}
             className={'padding-10 margin-10'} 
+            type={type}
+            required={required}
             onChange={(e) => {
                 onChange(e.target.value)
                 setValue(e.target.value)

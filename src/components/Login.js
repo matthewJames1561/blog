@@ -14,7 +14,6 @@ import { useUser } from './authComponents/AuthProvider';
 export default function Login() {
     const [searchParams] = useSearchParams();
     const { user } = useUser()
-    console.log(user)
     const navigate = useNavigate()
 
     const uiConfig = useMemo(() => ({
@@ -38,8 +37,6 @@ export default function Login() {
     useEffect(() => {
         if (user) navigate('/')
         else {
-
-            console.log('hit')
             const ui = firebaseui.auth.AuthUI.getInstance() || new firebaseui.auth.AuthUI(auth);
 
             ui.start('#firebaseui-auth-container', uiConfig);

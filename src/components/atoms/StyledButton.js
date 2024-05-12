@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-export default function StyledButton({ onClick, children }) {
+export default function StyledButton({ onClick, children, type, preventDefault = true, disabled = false  }) {
   const [showBubbles, setShowBubbles] = useState()
   function animateButton() {
     setShowBubbles(true)
@@ -10,12 +10,12 @@ export default function StyledButton({ onClick, children }) {
   };
 
   const handleClick = useCallback((e) => {
-    e.preventDefault();
+    if(preventDefault) e.preventDefault();
     animateButton()
-    onClick()
-  }, [onClick])
+    if(onClick) onClick()
+  }, [onClick, preventDefault])
 
 
-  return <button className={showBubbles ? 'bubbly-button animate' : 'button'} onClick={handleClick}>{children}</button>
+  return <button type={type} className={showBubbles ? 'bubbly-button animate' : 'button'} onClick={handleClick} disabled={disabled}>{children}</button>
 
 }

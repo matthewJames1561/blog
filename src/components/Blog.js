@@ -3,6 +3,7 @@ import { css } from '@emotion/react';
 import { useGetAllPublishedBlogs, } from "../firebaseServices";
 import BlogCard from "./BlogCard";
 import Spinner from "./atoms/Spinner";
+import Reveal from './atoms/Reveal';
 
 const blogWrapperCss = css`
   display: flex;
@@ -17,7 +18,9 @@ function Blog() {
 
   return <div css={blogWrapperCss}>
     {data?.map((post) => {
-      return <BlogCard {...post}></BlogCard>
+      return <Reveal>
+        <BlogCard {...post}></BlogCard>
+      </Reveal>
     })}
   </div>
 }

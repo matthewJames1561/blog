@@ -4,7 +4,21 @@ import { css } from '@emotion/react';
 import { Outlet, Link } from "react-router-dom";
 import StyledButton from '../components/atoms/StyledButton';
 import CircuitBackground from '../components/CircuitBackground';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import SubscribeDialog from '../components/atoms/SubscribeDialog';
+
+const footerCss = css`
+  display: flex;
+  padding: 20px;
+  flex-wrap: wrap; 
+  justify-content: space-between;
+  background-color: var(--dark-purple); 
+  filter: brightness(0.7);
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+  }
+`
+
 const navCss = css`
   background-color: var(--dark-purple);
   filter: brightness(0.7);
@@ -40,6 +54,7 @@ const spacingCss = css`
 `
 
 const Layout = () => {
+  const [showDialog, setShowDialog] = useState(false)
   return (
     <>
       <nav css={navCss}>
@@ -59,10 +74,11 @@ const Layout = () => {
       <main>
         <Outlet />
       </main>
-      <footer style={{ display: 'flex', padding: '20px', flexDirection: 'column', backgroundColor: 'var(--dark-purple)', filter: 'brightness(0.7)' }}>
+      <footer css={footerCss} >
 
         <a css={spacingCss} href='https://portfolio-73964.web.app/'>My First Portfolio Website</a>
-        <div css={spacingCss}>
+        <div css={spacingCss} style={{display: 'flex', justifyContent: "space-between", gap: '10px'}}>
+          <StyledButton onClick={() => {setShowDialog(!showDialog)}}>Subscribe</StyledButton>
           <StyledButton onClick={() => {
               var email = 'matthewj1561@gmail.com';
               var subject = 'Blog Contact - {Your Name}';
@@ -71,6 +87,7 @@ const Layout = () => {
           }}>Contact Me</StyledButton>
         </div>
       </footer>
+      <SubscribeDialog show={showDialog} close={() => {setShowDialog(!showDialog)}}/>
     </>
   )
 };

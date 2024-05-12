@@ -47,12 +47,9 @@ function CreateBlogInner({ data, id }) {
             timestamp: Date.now(),
             description
         }
+        await publishBlog(id, postData)
 
-        await publishBlog(id, postData).catch((e) => {
-            alert(e)
-        })
-
-        navigate('/blog')
+        // navigate('/blog')
     }, [content, description, handleSave, id, navigate, thumbnail, title])
 
     const handleDelete = useCallback(async () => {

@@ -11,6 +11,6 @@ const centerCss = css`
 
 export default function Dev() {
     return <div css={centerCss}>
-        <h2>🚧🔨 Under construction 🔨🚧</h2>
+        <h2>🚧 Under construction 🚧</h2>
     </div>
 }

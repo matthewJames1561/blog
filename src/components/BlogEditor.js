@@ -9,7 +9,6 @@ const blogWrapperCss = css`
 `
 export default function BlogEditor() {
     const { data, error, loading } = useGetAllSavedBlogs()
-    console.log(data)
 
     return <div>
         <h1>Choose a saved post to edit</h1>

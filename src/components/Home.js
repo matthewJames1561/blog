@@ -28,7 +28,7 @@ function BlogSection() {
   const { data, error, loading } = useGetTopThreePublishedBlogs()
 
 
-  return <div style={{ margin: '10px' }}>
+  return <div >
     <h1>Most Recent Blog Posts</h1>
     <hr></hr>
     <div style={{ display: 'flex', flexWrap: 'wrap' }}>
