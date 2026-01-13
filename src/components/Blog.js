@@ -12,6 +12,12 @@ const blogWrapperCss = css`
   gap: ${spacing['3xl']};
   padding: ${spacing['4xl']};
   align-items: stretch;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: ${spacing.xl};
+    padding: ${spacing.xl} ${spacing.md};
+  }
 `
 
 function Blog() {

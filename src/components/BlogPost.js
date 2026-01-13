@@ -11,6 +11,10 @@ const containerCss = css`
   margin: 0 auto;
   padding: ${spacing['4xl']} ${spacing.xl};
 
+  @media screen and (max-width: 800px) {
+    padding: ${spacing['2xl']} ${spacing.sm};
+  }
+
   h1 {
     font-size: ${typography.fontSize['4xl']};
     font-weight: ${typography.fontWeight.bold};
@@ -20,6 +24,10 @@ const containerCss = css`
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize['3xl']};
+    }
   }
 
   hr {
@@ -35,6 +43,10 @@ const contentCss = css`
   border-radius: ${radius.lg};
   padding: ${spacing['3xl']};
   line-height: ${typography.lineHeight.relaxed};
+
+  @media screen and (max-width: 800px) {
+    padding: ${spacing.lg};
+  }
 
   * {
     max-width: 100%;

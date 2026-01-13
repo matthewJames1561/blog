@@ -65,6 +65,10 @@ const containerCss = css`
   max-width: 1400px;
   margin: 0 auto;
   padding: 0 ${spacing['4xl']} ${spacing['4xl']} ${spacing['4xl']};
+
+  @media (max-width: 800px) {
+    padding: 0 ${spacing.md} ${spacing['3xl']} ${spacing.md};
+  }
 `;
 
 const contentWrapperCss = css`
@@ -74,6 +78,7 @@ const contentWrapperCss = css`
 
   @media (max-width: 800px) {
     flex-direction: column;
+    gap: ${spacing.xl};
   }
 `;
 
@@ -89,11 +94,19 @@ const titleCss = css`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: ${spacing.md};
+
+    @media (max-width: 800px) {
+      font-size: ${typography.fontSize['3xl']};
+    }
   }
 
   p {
     font-size: ${typography.fontSize.xl};
     color: ${colors.whiteAlpha(0.7)};
+
+    @media (max-width: 800px) {
+      font-size: ${typography.fontSize.lg};
+    }
   }
 `;
 
@@ -107,9 +120,12 @@ const mapContainerCss = css`
   border: 2px solid ${colors.whiteAlpha(0.1)};
   border-radius: ${radius.xl};
   box-shadow: ${shadows.lg};
+  overflow: hidden;
 
   @media (max-width: 800px) {
-    margin: 0 auto ${spacing['3xl']};
+    width: auto;
+    margin: 0 0 ${spacing['3xl']} 0;
+    padding: ${spacing.xl};
   }
 `;
 
@@ -118,6 +134,8 @@ const mapImageCss = css`
   height: auto;
   opacity: 0.3;
   filter: brightness(0.6) drop-shadow(0 4px 8px ${colors.blackAlpha(0.3)});
+  display: block;
+  max-width: 100%;
 `;
 
 const locationMarkerCss = css`
@@ -162,6 +180,7 @@ const pathLinesCss = css`
   height: 100%;
   pointer-events: none;
   z-index: 1;
+  overflow: visible;
 
   @media (max-width: 800px) {
     display: none;
@@ -214,6 +233,7 @@ const storyCardCss = css`
 
   @media (max-width: 800px) {
     margin-top: ${spacing['3xl']};
+    padding: ${spacing.xl};
   }
 
   @keyframes slideUp {
@@ -232,6 +252,10 @@ const storyCardCss = css`
     font-weight: ${typography.fontWeight.bold};
     color: ${colors.gold};
     margin-bottom: ${spacing.sm};
+
+    @media (max-width: 800px) {
+      font-size: ${typography.fontSize['2xl']};
+    }
   }
 
   .period {
@@ -239,6 +263,10 @@ const storyCardCss = css`
     color: ${colors.pink};
     margin-bottom: ${spacing.xl};
     font-weight: ${typography.fontWeight.medium};
+
+    @media (max-width: 800px) {
+      font-size: ${typography.fontSize.base};
+    }
   }
 
   .description {
@@ -246,6 +274,10 @@ const storyCardCss = css`
     line-height: ${typography.lineHeight.relaxed};
     color: ${colors.whiteAlpha(0.85)};
     margin-bottom: ${spacing.xl};
+
+    @media (max-width: 800px) {
+      font-size: ${typography.fontSize.base};
+    }
   }
 
   .activities-header {
@@ -255,6 +287,10 @@ const storyCardCss = css`
     text-transform: uppercase;
     letter-spacing: 0.1em;
     margin-bottom: ${spacing.sm};
+
+    @media (max-width: 800px) {
+      font-size: ${typography.fontSize.xs};
+    }
   }
 
   .activities {
@@ -269,6 +305,11 @@ const storyCardCss = css`
       border-radius: ${radius.full};
       font-size: ${typography.fontSize.sm};
       color: ${colors.whiteAlpha(0.9)};
+
+      @media (max-width: 800px) {
+        font-size: ${typography.fontSize.xs};
+        padding: ${spacing.xs} ${spacing.sm};
+      }
     }
   }
 `;
@@ -279,6 +320,11 @@ const navigationHintCss = css`
   font-size: ${typography.fontSize.base};
   color: ${colors.whiteAlpha(0.6)};
 
+  @media (max-width: 800px) {
+    font-size: ${typography.fontSize.sm};
+    margin-top: ${spacing.md};
+  }
+
   span {
     display: inline-block;
     padding: ${spacing.xs} ${spacing.md};
@@ -286,6 +332,10 @@ const navigationHintCss = css`
     border-radius: ${radius.sm};
     margin: 0 ${spacing.xs};
     font-family: monospace;
+
+    @media (max-width: 800px) {
+      padding: ${spacing.xs} ${spacing.sm};
+    }
   }
 `;
 
@@ -295,6 +345,11 @@ const navigationControlsCss = css`
   align-items: center;
   gap: ${spacing.lg};
   margin-top: ${spacing.lg};
+
+  @media (max-width: 800px) {
+    gap: ${spacing.sm};
+    margin-top: ${spacing.md};
+  }
 `;
 
 const navButtonCss = (disabled) => css`
@@ -309,6 +364,12 @@ const navButtonCss = (disabled) => css`
   display: flex;
   align-items: center;
   gap: ${spacing.sm};
+
+  @media (max-width: 800px) {
+    padding: ${spacing.sm} ${spacing.lg};
+    font-size: ${typography.fontSize.base};
+    gap: ${spacing.xs};
+  }
 
   &:hover {
     ${!disabled && `

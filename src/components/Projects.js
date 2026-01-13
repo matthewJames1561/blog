@@ -8,11 +8,19 @@ const containerCss = css`
   margin: 0 auto;
   padding: ${spacing['5xl']} ${spacing.xl} ${spacing['4xl']};
   overflow: visible;
+
+  @media screen and (max-width: 800px) {
+    padding: ${spacing['3xl']} ${spacing.md};
+  }
 `;
 
 const headerCss = css`
   text-align: center;
   margin-bottom: ${spacing['5xl']};
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: ${spacing['3xl']};
+  }
 
   h1 {
     font-size: ${typography.fontSize['4xl']};
@@ -24,11 +32,19 @@ const headerCss = css`
     margin-bottom: ${spacing.md};
     padding: 0 ${spacing.md};
     line-height: ${typography.lineHeight.tight};
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize['3xl']};
+    }
   }
 
   p {
     font-size: ${typography.fontSize.xl};
     color: ${colors.whiteAlpha(0.7)};
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize.lg};
+    }
   }
 `;
 
@@ -38,6 +54,12 @@ const projectsGrid = css`
   gap: ${spacing['3xl']};
   margin-top: ${spacing['4xl']};
   padding-top: ${spacing.xl};
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: ${spacing.xl};
+    margin-top: ${spacing.xl};
+  }
 `;
 
 const projectCard = css`

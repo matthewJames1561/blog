@@ -18,10 +18,14 @@ const contentCss = css`
   padding: 40px;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  
+
   /* Only content elements capture pointer events, not the empty space */
   & > * {
     pointer-events: auto;
+  }
+
+  @media screen and (max-width: 800px) {
+    padding: 20px;
   }
 `;
 
@@ -29,7 +33,11 @@ const heroSection = css`
   text-align: center;
   margin-bottom: 80px;
   animation: fadeInDown 1s ease-out;
-  
+
+  @media screen and (max-width: 800px) {
+    margin-bottom: 40px;
+  }
+
   @keyframes fadeInDown {
     from {
       opacity: 0;
@@ -52,7 +60,11 @@ const title = css`
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 30px rgba(253, 184, 19, 0.3);
   animation: glow 3s ease-in-out infinite;
-  
+
+  @media screen and (max-width: 800px) {
+    font-size: 2.5rem;
+  }
+
   @keyframes glow {
     0%, 100% { filter: brightness(1); }
     50% { filter: brightness(1.3); }
@@ -65,7 +77,11 @@ const subtitle = css`
   margin-top: 10px;
   opacity: 0;
   animation: fadeIn 1s ease-out 0.5s forwards;
-  
+
+  @media screen and (max-width: 800px) {
+    font-size: 1rem;
+  }
+
   @keyframes fadeIn {
     to { opacity: 1; }
   }
@@ -78,6 +94,12 @@ const orbitingCards = css`
   max-width: 1200px;
   width: 100%;
   margin-top: 40px;
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-top: 20px;
+  }
 `;
 
 const planetCard = css`
@@ -186,7 +208,13 @@ const navigationLinks = css`
   margin-top: 60px;
   justify-content: center;
   animation: fadeIn 1s ease-out 1.2s backwards;
-  
+
+  @media screen and (max-width: 800px) {
+    gap: 20px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+  }
+
   @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
@@ -207,14 +235,19 @@ const navButton = css`
   cursor: pointer;
   transition: all 0.3s ease;
   display: inline-block;
-  
+
+  @media screen and (max-width: 800px) {
+    padding: 12px 24px;
+    font-size: 1rem;
+  }
+
   &:hover {
     background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.4);
     transform: translateY(-2px);
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   }
-  
+
   &:active {
     transform: translateY(0);
   }

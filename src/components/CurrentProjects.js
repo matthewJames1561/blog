@@ -8,6 +8,10 @@ const containerCss = css`
   padding: ${spacing['5xl']} ${spacing.xl};
   background: ${colors.blackAlpha(0.2)};
   border-top: 2px solid ${colors.whiteAlpha(0.1)};
+
+  @media screen and (max-width: 800px) {
+    padding: ${spacing['3xl']} ${spacing.md};
+  }
 `;
 
 const titleCss = css`
@@ -22,11 +26,19 @@ const titleCss = css`
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: ${spacing.md};
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize['3xl']};
+    }
   }
 
   p {
     font-size: ${typography.fontSize.xl};
     color: ${colors.whiteAlpha(0.7)};
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize.lg};
+    }
   }
 `;
 
@@ -35,6 +47,11 @@ const projectsGridCss = css`
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: ${spacing['3xl']};
   margin-top: ${spacing['3xl']};
+
+  @media screen and (max-width: 800px) {
+    grid-template-columns: 1fr;
+    gap: ${spacing.xl};
+  }
 `;
 
 const projectCardCss = css`
@@ -45,6 +62,10 @@ const projectCardCss = css`
   transition: ${transitions.bouncySlow};
   position: relative;
   overflow: hidden;
+
+  @media screen and (max-width: 800px) {
+    padding: ${spacing.xl};
+  }
 
   &::before {
     content: '';
@@ -68,6 +89,10 @@ const projectCardCss = css`
     &::before {
       opacity: 0.3;
     }
+
+    @media screen and (max-width: 800px) {
+      transform: translateY(-5px);
+    }
   }
 
   .icon {
@@ -75,6 +100,10 @@ const projectCardCss = css`
     margin-bottom: ${spacing.lg};
     display: inline-block;
     animation: float 3s ease-in-out infinite;
+
+    @media screen and (max-width: 800px) {
+      font-size: 2.5rem;
+    }
   }
 
   @keyframes float {
@@ -91,6 +120,10 @@ const projectCardCss = css`
     font-weight: ${typography.fontWeight.semibold};
     color: var(--title-color);
     margin-bottom: ${spacing.md};
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize.xl};
+    }
   }
 
   p {
@@ -98,6 +131,10 @@ const projectCardCss = css`
     line-height: ${typography.lineHeight.relaxed};
     color: ${colors.whiteAlpha(0.8)};
     margin-bottom: ${spacing.lg};
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize.sm};
+    }
   }
 
   .status {
@@ -126,6 +163,10 @@ const projectCardCss = css`
       50% {
         opacity: 0.5;
       }
+    }
+
+    @media screen and (max-width: 800px) {
+      font-size: ${typography.fontSize.xs};
     }
   }
 `;

@@ -19,7 +19,12 @@ const headingCss = css`
   justify-content: flex-start;
 
   @media screen and (max-width: ${breakpoints.mobile}) {
-    font-size: 12vw;
+    font-size: clamp(2rem, 10vw, 3rem);
+    flex-wrap: nowrap;
+  }
+
+  @media screen and (max-width: 400px) {
+    font-size: clamp(1.75rem, 9vw, 2.5rem);
   }
 `;
 

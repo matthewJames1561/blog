@@ -4,7 +4,7 @@ import { css } from '@emotion/react';
 import { Outlet, Link } from "react-router-dom";
 import StyledButton from '../components/atoms/StyledButton';
 import CircuitBackground from '../components/CircuitBackground';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import SubscribeDialog from '../components/atoms/SubscribeDialog';
 import SocialLinks from '../components/atoms/SocialLinks';
 import { colors, spacing, typography, transitions, radius, shadows, breakpoints } from '../theme';
@@ -24,7 +24,7 @@ const footerCss = css`
   }
 `
 
-const navCss = css`
+const navCss = (isOpen) => css`
   background: linear-gradient(180deg, rgba(30, 20, 50, 0.95) 0%, rgba(20, 10, 40, 0.98) 100%);
   backdrop-filter: blur(10px);
   width: 220px;
@@ -35,17 +35,89 @@ const navCss = css`
   display: flex;
   flex-direction: column;
   padding: ${spacing['5xl']} 0 ${spacing['4xl']} 0;
-  z-index: 1;
+  z-index: 1000;
   border-right: 1px solid ${colors.whiteAlpha(0.1)};
   box-shadow: 4px 0 20px ${colors.blackAlpha(0.3)};
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
   @media screen and (max-width: ${breakpoints.mobile}) {
-    width: 100%;
-    min-height: auto;
-    position: relative;
-    padding: ${spacing.xl} 0;
-    border-right: none;
-    border-bottom: 1px solid ${colors.whiteAlpha(0.1)};
+    width: 280px;
+    transform: translateX(${isOpen ? '0' : '-100%'});
+    z-index: 1001;
+  }
+`
+
+const hamburgerButtonCss = css`
+  display: none;
+  position: fixed;
+  top: ${spacing.lg};
+  left: ${spacing.lg};
+  z-index: 1002;
+  background: linear-gradient(135deg, rgba(30, 20, 50, 0.95), rgba(20, 10, 40, 0.98));
+  backdrop-filter: blur(10px);
+  border: 2px solid ${colors.whiteAlpha(0.2)};
+  border-radius: ${radius.md};
+  padding: ${spacing.md};
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: ${shadows.lg};
+
+  &:hover {
+    border-color: ${colors.gold};
+    box-shadow: 0 0 20px ${colors.blackAlpha(0.5)}, 0 0 10px rgba(253, 184, 19, 0.3);
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+  }
+`
+
+const hamburgerLineCss = (isOpen) => css`
+  width: 24px;
+  height: 2px;
+  background: ${colors.whiteAlpha(0.9)};
+  border-radius: 2px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  &:nth-of-type(1) {
+    transform: ${isOpen ? 'translateY(7px) rotate(45deg)' : 'none'};
+  }
+
+  &:nth-of-type(2) {
+    opacity: ${isOpen ? '0' : '1'};
+    transform: ${isOpen ? 'translateX(-10px)' : 'none'};
+  }
+
+  &:nth-of-type(3) {
+    transform: ${isOpen ? 'translateY(-7px) rotate(-45deg)' : 'none'};
+  }
+`
+
+const overlayBackdropCss = (isOpen) => css`
+  display: none;
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: ${colors.blackAlpha(0.7)};
+    backdrop-filter: blur(5px);
+    z-index: 999;
+    opacity: ${isOpen ? '1' : '0'};
+    pointer-events: ${isOpen ? 'all' : 'none'};
+    transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 `
 
@@ -58,11 +130,17 @@ const navUlCss = css`
   gap: ${spacing.sm};
 `
 
-const linkItemCss = css`
+const linkItemCss = (index, isOpen) => css`
   position: relative;
   margin: 0 ${spacing.xl};
   transition: ${transitions.bouncy};
-  
+
+  @media screen and (max-width: ${breakpoints.mobile}) {
+    opacity: ${isOpen ? 1 : 0};
+    transform: ${isOpen ? 'translateX(0)' : 'translateX(-20px)'};
+    transition: opacity 0.3s ease ${index * 0.1}s, transform 0.3s ease ${index * 0.1}s;
+  }
+
   a {
     display: block;
     padding: ${spacing.md} ${spacing.xl};
@@ -150,30 +228,68 @@ const mainContent = css`
 
   @media screen and (max-width: ${breakpoints.mobile}) {
     margin-left: 0;
+    padding-top: 70px;
   }
 `
 
 const Layout = () => {
   const [showDialog, setShowDialog] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+  // Close menu when clicking on a link
+  const handleLinkClick = () => {
+    setIsMenuOpen(false)
+  }
+
+  // Prevent body scroll when menu is open on mobile
+  useEffect(() => {
+    if (isMenuOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isMenuOpen])
+
   return (
     <div css={layoutContainer}>
-      <nav css={navCss}>
-        <ul css={navUlCss}>
-          <li css={linkItemCss}>
-            <Link to="/">Home</Link>
-          </li>
-          <li css={linkItemCss}>
-            <Link to="/blog">Blog</Link>
-          </li>
-          <li css={linkItemCss}>
-            <Link to="/dev">Dev</Link>
-          </li>
-          <li css={linkItemCss}>
-            <Link to="/guestbook">Guestbook</Link>
-          </li>
+      {/* Hamburger Menu Button */}
+      <button
+        css={hamburgerButtonCss}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        <div css={hamburgerLineCss(isMenuOpen)} />
+        <div css={hamburgerLineCss(isMenuOpen)} />
+        <div css={hamburgerLineCss(isMenuOpen)} />
+      </button>
 
+      {/* Overlay Backdrop */}
+      <div
+        css={overlayBackdropCss(isMenuOpen)}
+        onClick={() => setIsMenuOpen(false)}
+      />
+
+      {/* Navigation */}
+      <nav css={navCss(isMenuOpen)}>
+        <ul css={navUlCss}>
+          <li css={linkItemCss(0, isMenuOpen)}>
+            <Link to="/" onClick={handleLinkClick}>Home</Link>
+          </li>
+          <li css={linkItemCss(1, isMenuOpen)}>
+            <Link to="/blog" onClick={handleLinkClick}>Blog</Link>
+          </li>
+          <li css={linkItemCss(2, isMenuOpen)}>
+            <Link to="/dev" onClick={handleLinkClick}>Dev</Link>
+          </li>
+          <li css={linkItemCss(3, isMenuOpen)}>
+            <Link to="/guestbook" onClick={handleLinkClick}>Guestbook</Link>
+          </li>
         </ul>
       </nav>
+
       <div css={mainContent}>
         <main>
           <Outlet />

@@ -81,6 +81,7 @@ const inputCss = css`
   font-size: ${typography.fontSize.base};
   font-family: ${typography.fontFamily};
   transition: ${transitions.normal};
+  box-sizing: border-box;
 
   &:focus {
     outline: none;
