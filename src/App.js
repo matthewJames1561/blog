@@ -11,6 +11,8 @@ import AuthProvider from './components/authComponents/AuthProvider';
 import BlogEditor from './components/BlogEditor';
 import BlogPost from './components/BlogPost';
 import Dev from './components/Dev';
+import Projects from './components/Projects';
+import Guestbook from './components/Guestbook';
 
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
             <Route path="/create/:id" element={<AuthRoute><CreateBlog /></AuthRoute>}></Route>
             <Route path="/edit" element={<AuthRoute><BlogEditor /></AuthRoute>}></Route>
             <Route path="/dev" element={<Dev/>}></Route>
+            <Route path="/projects" element={<Projects />}></Route>
+            <Route path="/guestbook" element={<Guestbook />}></Route>
             <Route path="/login" element={<Login />} />
             <Route path="*" element={<NoPage />} />
           </Route>

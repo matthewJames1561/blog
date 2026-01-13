@@ -1,0 +1,190 @@
+.orbit-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #0a0a1a;
+  z-index: 0;
+  pointer-events: auto;
+}
+
+.orbit-canvas {
+  display: block;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 1;
+}
+
+.menu-toggle-btn {
+  position: fixed;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+}
+
+.menu-toggle-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.orbit-info {
+  position: fixed;
+  top: 50%;
+  right: 80px;
+  transform: translateY(-50%);
+  color: white;
+  font-family: 'Arial', sans-serif;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: slideInRight 0.3s ease;
+  pointer-events: auto;
+  z-index: 10000;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateY(-50%) translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(-50%) translateX(0);
+  }
+}
+
+.orbit-info h3 {
+  margin: 0 0 8px 0;
+  font-size: 18px;
+  color: #FDB813;
+}
+
+.orbit-info p {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #ccc;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.planet-toggle-btn {
+  background: linear-gradient(135deg, #FF1493, #FF69B4);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(255, 20, 147, 0.3);
+}
+
+.planet-toggle-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 20, 147, 0.5);
+}
+
+.planet-toggle-btn:active {
+  transform: translateY(0);
+}
+
+.reset-simulation-btn {
+  background: linear-gradient(135deg, #4169E1, #6495ED);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(65, 105, 225, 0.3);
+}
+
+.reset-simulation-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(65, 105, 225, 0.5);
+}
+
+.reset-simulation-btn:active {
+  transform: translateY(0);
+}
+
+.toggle-content-btn {
+  background: linear-gradient(135deg, #9370DB, #BA55D3);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(147, 112, 219, 0.3);
+}
+
+.toggle-content-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(147, 112, 219, 0.5);
+}
+
+.toggle-content-btn:active {
+  transform: translateY(0);
+}
+
+.zoom-controls {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.zoom-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 40px;
+}
+
+.zoom-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.zoom-btn:active {
+  transform: translateY(0);
+}
+
+.reset-btn {
+  font-size: 20px;
+  padding: 6px 12px;
+}

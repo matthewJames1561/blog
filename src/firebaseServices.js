@@ -5,6 +5,9 @@ import { addDoc, collection, deleteDoc, doc, getDoc, getDocs, getFirestore, limi
 import { useCallback, useEffect, useState } from 'react';
 import emailjs from '@emailjs/browser'
 
+// Initialize EmailJS with your public key
+emailjs.init(process.env.REACT_APP_EMAIL_KEY)
+
 
 const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
@@ -17,14 +20,10 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+getAnalytics(app);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 export default app;
-
-export function useSavePost() {
-
-}
 
 export function useGetAllSavedBlogs() {
     const [data, setData] = useState({ data: [], error: false, loading: true })
@@ -141,8 +140,18 @@ export async function publishBlog(id, postData) {
         const subs = await getDocs(q)
         subs.forEach((doc) => {
             const docData = doc.data()
-            emailjs.send(process.env.REACT_APP_EMAIL_SERVICE_ID, 'template_4vx3v4p', {to_name: docData?.name, to_email: doc?.id, new_post_link: `https://blog-b4a6c.web.app/blog/${id}`, new_post_title: postData?.title, new_post_description: postData?.description}, {
-                publicKey: process.env.REACT_APP_EMAIL_KEY
+            emailjs.send(
+                process.env.REACT_APP_EMAIL_SERVICE_ID, 
+                'template_4vx3v4p', 
+                {
+                    to_name: docData?.name, 
+                    to_email: doc?.id, 
+                    new_post_link: `https://blog-b4a6c.web.app/blog/${id}`, 
+                    new_post_title: postData?.title, 
+                    new_post_description: postData?.description
+                }
+            ).catch((error) => {
+                console.error('Failed to send email:', error)
             })
           });
     }
@@ -158,5 +167,32 @@ export async function saveSubscriber(email, postData) {
     const existingSub = await getDoc(doc(db, "subscribers", email))
     if (existingSub.data()) return 'already_saved'
     return setDoc(doc(db, "subscribers", email), postData)
+}
 
+// Guestbook functions
+export function useGetAllGuestbookEntries() {
+    const [data, setData] = useState({ data: [], error: false, loading: true })
+
+    const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"))
+
+    useEffect(() => {
+        getDocs(q).then((querySnap) => {
+            const querySnapshots = []
+            querySnap.forEach((snap) => {
+                querySnapshots.push({ id: snap.id, ...snap.data() })
+            })
+            setData({ data: querySnapshots, error: false, loading: false })
+        }).catch(() => {
+            setData({ data: [], error: true, loading: false })
+        });
+    }, [])
+
+    return data
+}
+
+export async function saveGuestbookEntry(entryData) {
+    return addDoc(collection(db, "guestbook"), {
+        ...entryData,
+        timestamp: Date.now()
+    })
 }
